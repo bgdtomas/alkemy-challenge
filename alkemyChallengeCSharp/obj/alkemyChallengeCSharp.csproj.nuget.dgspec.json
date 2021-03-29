@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\matut\\OneDrive\\Documentos\\repos\\alkemy-challenge\\alkemyChallengeCSharp\\alkemyChallengeCSharp\\alkemyChallengeCSharp.csproj": {}
+    "C:\\Users\\matut\\OneDrive\\Documentos\\repos\\alkemy-challenge\\alkemy-challenge\\alkemyChallengeCSharp\\alkemyChallengeCSharp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\matut\\OneDrive\\Documentos\\repos\\alkemy-challenge\\alkemyChallengeCSharp\\alkemyChallengeCSharp\\alkemyChallengeCSharp.csproj": {
+    "C:\\Users\\matut\\OneDrive\\Documentos\\repos\\alkemy-challenge\\alkemy-challenge\\alkemyChallengeCSharp\\alkemyChallengeCSharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\matut\\OneDrive\\Documentos\\repos\\alkemy-challenge\\alkemyChallengeCSharp\\alkemyChallengeCSharp\\alkemyChallengeCSharp.csproj",
+        "projectUniqueName": "C:\\Users\\matut\\OneDrive\\Documentos\\repos\\alkemy-challenge\\alkemy-challenge\\alkemyChallengeCSharp\\alkemyChallengeCSharp.csproj",
         "projectName": "alkemyChallengeCSharp",
-        "projectPath": "C:\\Users\\matut\\OneDrive\\Documentos\\repos\\alkemy-challenge\\alkemyChallengeCSharp\\alkemyChallengeCSharp\\alkemyChallengeCSharp.csproj",
+        "projectPath": "C:\\Users\\matut\\OneDrive\\Documentos\\repos\\alkemy-challenge\\alkemy-challenge\\alkemyChallengeCSharp\\alkemyChallengeCSharp.csproj",
         "packagesPath": "C:\\Users\\matut\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\matut\\OneDrive\\Documentos\\repos\\alkemy-challenge\\alkemyChallengeCSharp\\alkemyChallengeCSharp\\obj\\",
+        "outputPath": "C:\\Users\\matut\\OneDrive\\Documentos\\repos\\alkemy-challenge\\alkemy-challenge\\alkemyChallengeCSharp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\matut\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,26 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
