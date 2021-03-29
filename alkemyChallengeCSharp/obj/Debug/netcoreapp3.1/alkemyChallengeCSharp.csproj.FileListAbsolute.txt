@@ -1,0 +1,7 @@
+C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemyChallengeCSharp\alkemyChallengeCSharp\obj\Debug\netcoreapp3.1\alkemyChallengeCSharp.csprojAssemblyReference.cache
+C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemyChallengeCSharp\alkemyChallengeCSharp\obj\Debug\netcoreapp3.1\alkemyChallengeCSharp.AssemblyInfoInputs.cache
+C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemyChallengeCSharp\alkemyChallengeCSharp\obj\Debug\netcoreapp3.1\alkemyChallengeCSharp.AssemblyInfo.cs
+C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemyChallengeCSharp\alkemyChallengeCSharp\obj\Debug\netcoreapp3.1\alkemyChallengeCSharp.csproj.CoreCompileInputs.cache
+C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemyChallengeCSharp\alkemyChallengeCSharp\obj\Debug\netcoreapp3.1\alkemyChallengeCSharp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemyChallengeCSharp\alkemyChallengeCSharp\obj\Debug\netcoreapp3.1\alkemyChallengeCSharp.RazorAssemblyInfo.cache
+C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemyChallengeCSharp\alkemyChallengeCSharp\obj\Debug\netcoreapp3.1\alkemyChallengeCSharp.RazorAssemblyInfo.cs
