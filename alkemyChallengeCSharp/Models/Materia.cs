@@ -18,7 +18,7 @@ namespace alkemyChallengeCSharp.Models
         public string Nombre { get; set; }
 
         [Required(ErrorMessage = "Este campo es requerido")]
-        [RegularExpression(@"[0-9]{2}\-[0-9]{2}", ErrorMessage = "El campo debe ser del formato NN-NN")]
+        [RegularExpression(@"[1-5]{1}\-[2-6]{1}", ErrorMessage = "El campo debe ser del formato N-N y debe estar comprendido entre 0 y 12")]
         [Display(Name = "Horario")]
         public string Horario { get; set; }
 
@@ -29,7 +29,7 @@ namespace alkemyChallengeCSharp.Models
 
         [Required(ErrorMessage = "Este campo es requerido")]
         [Range(1D, 32D, ErrorMessage = "El maximo de alumnos debe estar comprendido entre 1 y 32")]
-        [Display(Name = "Stock")]
+        [Display(Name = "Maximo de Alumnos")]
         public int MaxAlumnos{ get; set; }
     }
 }
