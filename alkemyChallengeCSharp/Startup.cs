@@ -1,4 +1,5 @@
 using alkemyChallengeCSharp.Database;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,16 @@ namespace alkemyChallengeCSharp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options=>
+            {
+                options.LoginPath = "Accesos/Login";
+                options.AccessDeniedPath = "/Accesos/NoAutorizado";
+                options.LogoutPath = "/Accesos/Logout";
+                options.ExpireTimeSpan = new System.TimeSpan(2,0,0);
+                options.SlidingExpiration = true;
+            })
+            ;
+
             services.AddControllersWithViews();
 
             services.AddDbContext<AcademiaDbContext>(options => options.UseSqlite("filename=academia.db"));
@@ -44,6 +55,8 @@ namespace alkemyChallengeCSharp
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -52,6 +65,8 @@ namespace alkemyChallengeCSharp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseCookiePolicy();
         }
     }
 }
