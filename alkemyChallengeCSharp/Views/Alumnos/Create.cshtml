@@ -1,7 +1,7 @@
 ﻿@model alkemyChallengeCSharp.Models.Alumno
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Alta de alumno";
 }
 
 <h1>Create</h1>
@@ -18,9 +18,9 @@
                 <span asp-validation-for="Dni" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Legajo" class="control-label"></label>
-                <input asp-for="Legajo" class="form-control" />
-                <span asp-validation-for="Legajo" class="text-danger"></span>
+                <label asp-for="Legajo" class="control-label">Legajo/Contraseña</label>
+                <input asp-for="Legajo" type="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>

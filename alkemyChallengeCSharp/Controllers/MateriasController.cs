@@ -19,14 +19,12 @@ namespace alkemyChallengeCSharp.Controllers
             _context = context;
         }
 
-        // GET: Materias
         public async Task<IActionResult> Index()
         {
             var academiaDbContext = _context.Materias.Include(m => m.Profesor);
             return View(await academiaDbContext.ToListAsync());
         }
 
-        // GET: Materias/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -45,16 +43,12 @@ namespace alkemyChallengeCSharp.Controllers
             return View(materia);
         }
 
-        // GET: Materias/Create
         public IActionResult Create()
         {
             ViewData["ProfesorId"] = new SelectList(_context.Profesores, "Id", "Apellido");
             return View();
         }
 
-        // POST: Materias/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Materia materia)
@@ -70,7 +64,6 @@ namespace alkemyChallengeCSharp.Controllers
             return View(materia);
         }
 
-        // GET: Materias/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -87,12 +80,9 @@ namespace alkemyChallengeCSharp.Controllers
             return View(materia);
         }
 
-        // POST: Materias/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Nombre,Horario,ProfesorId,MaxAlumnos")] Materia materia)
+        public async Task<IActionResult> Edit(Guid id, Materia materia)
         {
             if (id != materia.Id)
             {
@@ -123,7 +113,6 @@ namespace alkemyChallengeCSharp.Controllers
             return View(materia);
         }
 
-        // GET: Materias/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -142,7 +131,6 @@ namespace alkemyChallengeCSharp.Controllers
             return View(materia);
         }
 
-        // POST: Materias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

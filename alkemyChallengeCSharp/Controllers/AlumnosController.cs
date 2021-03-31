@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using alkemyChallengeCSharp.Database;
 using alkemyChallengeCSharp.Models;
+using usando_seguridad.Extensions;
 
 namespace alkemyChallengeCSharp.Controllers
 {
@@ -19,13 +21,11 @@ namespace alkemyChallengeCSharp.Controllers
             _context = context;
         }
 
-        // GET: Alumnos
         public async Task<IActionResult> Index()
         {
             return View(await _context.Alumnos.ToListAsync());
         }
 
-        // GET: Alumnos/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -43,22 +43,28 @@ namespace alkemyChallengeCSharp.Controllers
             return View(alumno);
         }
 
-        // GET: Alumnos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Alumnos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Dni,Legajo,Id,Nombre,Apellido,Username")] Alumno alumno)
+        public async Task<IActionResult> Create(Alumno alumno)
         {
+            try
+            {
+                alumno.Legajo.ValidarPassword();
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(nameof(Alumno.Password), ex.Message);
+            }
             if (ModelState.IsValid)
             {
                 alumno.Id = Guid.NewGuid();
+                alumno.Legajo = alumno.Legajo;
+                alumno.Password = alumno.Legajo.Encriptar();
                 _context.Add(alumno);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -66,7 +72,6 @@ namespace alkemyChallengeCSharp.Controllers
             return View(alumno);
         }
 
-        // GET: Alumnos/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -82,13 +87,22 @@ namespace alkemyChallengeCSharp.Controllers
             return View(alumno);
         }
 
-        // POST: Alumnos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Dni,Legajo,Id,Nombre,Apellido,Username")] Alumno alumno)
+        public async Task<IActionResult> Edit(Guid id, Alumno alumno)
         {
+            var alumnoLegajo = alumno.Legajo;
+            if (!string.IsNullOrEmpty(alumnoLegajo))
+            {
+                try
+                {
+                    alumnoLegajo.ValidarPassword();
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError(nameof(Admin.Password), ex.Message);
+                }
+            }
             if (id != alumno.Id)
             {
                 return NotFound();
@@ -98,7 +112,16 @@ namespace alkemyChallengeCSharp.Controllers
             {
                 try
                 {
-                    _context.Update(alumno);
+                    var alumnonDb = _context.Alumnos.Find(id);
+                    alumnonDb.Nombre = alumno.Nombre;
+                    alumnonDb.Apellido = alumno.Apellido;
+                    alumnonDb.Dni = alumno.Dni;
+                    alumnonDb.Username = alumno.Username;
+                    if (!string.IsNullOrEmpty(alumnoLegajo))
+                    {
+                        alumnonDb.Legajo = alumno.Legajo;
+                        alumnonDb.Password = alumnoLegajo.Encriptar();
+                    }
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -117,7 +140,6 @@ namespace alkemyChallengeCSharp.Controllers
             return View(alumno);
         }
 
-        // GET: Alumnos/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -135,7 +157,6 @@ namespace alkemyChallengeCSharp.Controllers
             return View(alumno);
         }
 
-        // POST: Alumnos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

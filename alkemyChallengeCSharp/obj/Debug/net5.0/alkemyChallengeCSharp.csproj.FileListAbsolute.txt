@@ -165,7 +165,6 @@ C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkem
 C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\obj\Debug\net5.0\alkemyChallengeCSharp.pdb
 C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\obj\Debug\net5.0\alkemyChallengeCSharp.genruntimeconfig.cache
 C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\obj\Debug\net5.0\Razor\Views\Admins\Create.cshtml.g.cs
-C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\obj\Debug\net5.0\Razor\Views\Admins\Delete.cshtml.g.cs
 C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\obj\Debug\net5.0\Razor\Views\Admins\Details.cshtml.g.cs
 C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\obj\Debug\net5.0\Razor\Views\Admins\Edit.cshtml.g.cs
 C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\obj\Debug\net5.0\Razor\Views\Admins\Index.cshtml.g.cs

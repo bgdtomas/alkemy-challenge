@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using alkemyChallengeCSharp.Database;
 using alkemyChallengeCSharp.Models;
+using usando_seguridad.Extensions;
 
 namespace alkemyChallengeCSharp.Controllers
 {
@@ -19,13 +20,11 @@ namespace alkemyChallengeCSharp.Controllers
             _context = context;
         }
 
-        // GET: Admins
         public async Task<IActionResult> Index()
         {
             return View(await _context.Administradores.ToListAsync());
         }
 
-        // GET: Admins/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -43,22 +42,28 @@ namespace alkemyChallengeCSharp.Controllers
             return View(admin);
         }
 
-        // GET: Admins/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Admins/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Username")] Admin admin)
+        public async Task<IActionResult> Create(Admin admin, string pass)
         {
+            try
+            {
+                pass.ValidarPassword();
+            }
+            catch(Exception ex)
+            {
+                ModelState.AddModelError(nameof(Admin.Password), ex.Message);
+            }
             if (ModelState.IsValid)
             {
                 admin.Id = Guid.NewGuid();
+                admin.Legajo = Guid.NewGuid();
+                admin.Password = pass.Encriptar();
                 _context.Add(admin);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -66,7 +71,6 @@ namespace alkemyChallengeCSharp.Controllers
             return View(admin);
         }
 
-        // GET: Admins/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -82,13 +86,22 @@ namespace alkemyChallengeCSharp.Controllers
             return View(admin);
         }
 
-        // POST: Admins/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Nombre,Apellido,Username")] Admin admin)
+        public async Task<IActionResult> Edit(Guid id, Admin admin, string pass)
         {
+            if (!string.IsNullOrEmpty(pass))
+            {
+                try
+                {
+                    pass.ValidarPassword();
+                }
+                catch(Exception ex)
+                {
+                    ModelState.AddModelError(nameof(Admin.Password), ex.Message);
+                }
+            }
+
             if (id != admin.Id)
             {
                 return NotFound();
@@ -98,7 +111,18 @@ namespace alkemyChallengeCSharp.Controllers
             {
                 try
                 {
-                    _context.Update(admin);
+                    var adminDb = _context.Administradores.Find(id);
+                    adminDb.Nombre = admin.Nombre;
+                    adminDb.Apellido = admin.Apellido;
+                    adminDb.Username = admin.Username;
+                    if (!string.IsNullOrEmpty(pass))
+                    {
+                        adminDb.Password = pass.Encriptar();
+                    }
+
+
+
+
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -117,7 +141,6 @@ namespace alkemyChallengeCSharp.Controllers
             return View(admin);
         }
 
-        // GET: Admins/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -135,7 +158,6 @@ namespace alkemyChallengeCSharp.Controllers
             return View(admin);
         }
 
-        // POST: Admins/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

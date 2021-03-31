@@ -31,7 +31,7 @@ namespace alkemyChallengeCSharp.Models
         public string Username { get; set; }
 
         [ScaffoldColumn(false)]
-        [Display(Name = "Constraseña")]
+        [Display(Name = "Contraseña")]
         public byte[] Password { get; set; }
 
         public string NombreYApellido => $"{Nombre} {Apellido}";
