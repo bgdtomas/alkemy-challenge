@@ -26,8 +26,22 @@ using alkemyChallengeCSharp.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\Views\_ViewImports.cshtml"
+using alkemyChallengeCSharp.Models.Enums;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\Views\_ViewImports.cshtml"
+using System.Security.Claims;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c4027e7a4974810676fc25b8169dba963c98adf1", @"/Views/Profesores/Details.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d1310b4e10072317adf0ea89a1ed200e56cd8210", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0c2bfce97153ce912b62ce9b0696c9c444bbe081", @"/Views/_ViewImports.cshtml")]
     public class Views_Profesores_Details : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<alkemyChallengeCSharp.Models.Profesor>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Edit", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -130,7 +144,7 @@ using alkemyChallengeCSharp.Models;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n        </dd>\r\n    </dl>\r\n</div>\r\n<div>\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c4027e7a4974810676fc25b8169dba963c98adf17245", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c4027e7a4974810676fc25b8169dba963c98adf17725", async() => {
                 WriteLiteral("Edit");
             }
             );
@@ -161,7 +175,7 @@ using alkemyChallengeCSharp.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral(" |\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c4027e7a4974810676fc25b8169dba963c98adf19436", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c4027e7a4974810676fc25b8169dba963c98adf19916", async() => {
                 WriteLiteral("Back to List");
             }
             );

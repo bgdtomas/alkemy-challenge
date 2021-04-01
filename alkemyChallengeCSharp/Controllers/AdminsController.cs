@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using alkemyChallengeCSharp.Database;
 using alkemyChallengeCSharp.Models;
 using usando_seguridad.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace alkemyChallengeCSharp.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class AdminsController : Controller
     {
         private readonly AcademiaDbContext _context;

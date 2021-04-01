@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using alkemyChallengeCSharp.Database;
 using alkemyChallengeCSharp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace alkemyChallengeCSharp.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class ProfesoresController : Controller
     {
         private readonly AcademiaDbContext _context;

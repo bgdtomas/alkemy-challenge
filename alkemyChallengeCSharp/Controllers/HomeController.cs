@@ -1,4 +1,5 @@
 ﻿using alkemyChallengeCSharp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,8 +10,10 @@ using System.Threading.Tasks;
 
 namespace alkemyChallengeCSharp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
+
         public IActionResult Index()
         {
             return View();

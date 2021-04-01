@@ -8,21 +8,64 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Academia Alkemy</a>
-                <a class="navbar-brand" asp-area="" asp-controller="Admins" asp-action="Index">Admins</a>
-                <a class="navbar-brand" asp-area="" asp-controller="Alumnos" asp-action="Index">Alumnos</a>
-                <a class="navbar-brand" asp-area="" asp-controller="Materias" asp-action="Index">Materias</a>
-                <a class="navbar-brand" asp-area="" asp-controller="Profesores" asp-action="Index">Profesores</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-        </nav>
-    </header>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img class="pt-2 pb-1" src="https://alkemy.org/assets/images/logo-header.png" alt="">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            @if (User.IsInRole(nameof(Rol.Administrador)))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Admins" asp-action="Index">Administradores</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Alumnos" asp-action="Index">Alumnos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Profesores" asp-action="Index">Profesores</a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Materias" asp-action="Index">Materias</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                @User.FindFirstValue(ClaimTypes.GivenName) <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <form id="logoutForm" method="post" asp-controller="Accesos" asp-action="Logout">
+                                        <button type="submit" class="btn btn-link p-0 pl-2">
+                                            Salir
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+            </nav>
+
+        </header>
+
+    }
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

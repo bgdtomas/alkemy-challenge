@@ -183,3 +183,5 @@ C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkem
 C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\obj\Debug\net5.0\Razor\Views\Profesores\Details.cshtml.g.cs
 C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\obj\Debug\net5.0\Razor\Views\Profesores\Edit.cshtml.g.cs
 C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\obj\Debug\net5.0\Razor\Views\Profesores\Index.cshtml.g.cs
+C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\obj\Debug\net5.0\Razor\Views\Accesos\NoAutorizado.cshtml.g.cs
+C:\Users\matut\OneDrive\Documentos\repos\alkemy-challenge\alkemy-challenge\alkemyChallengeCSharp\obj\Debug\net5.0\Razor\Views\Accesos\Login.cshtml.g.cs

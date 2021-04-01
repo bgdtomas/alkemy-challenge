@@ -27,7 +27,7 @@ namespace alkemyChallengeCSharp
         {
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options=>
             {
-                options.LoginPath = "Accesos/Login";
+                options.LoginPath = "/Accesos/Login";
                 options.AccessDeniedPath = "/Accesos/NoAutorizado";
                 options.LogoutPath = "/Accesos/Logout";
                 options.ExpireTimeSpan = new System.TimeSpan(2,0,0);

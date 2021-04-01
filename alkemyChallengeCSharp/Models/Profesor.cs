@@ -31,5 +31,8 @@ namespace alkemyChallengeCSharp.Models
         [Required(ErrorMessage = "Este campo es requerido")]
         [Display(Name = "Is Active")]
         public Boolean Activo { get; set; }
+
+
+        public string NombreYApellido => $"{Nombre} {Apellido}";
     }
 }

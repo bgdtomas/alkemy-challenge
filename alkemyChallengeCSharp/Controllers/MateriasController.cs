@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using alkemyChallengeCSharp.Database;
 using alkemyChallengeCSharp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace alkemyChallengeCSharp.Controllers
 {
+    [Authorize]
     public class MateriasController : Controller
     {
         private readonly AcademiaDbContext _context;
@@ -49,6 +51,7 @@ namespace alkemyChallengeCSharp.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Materia materia)
@@ -80,6 +83,7 @@ namespace alkemyChallengeCSharp.Controllers
             return View(materia);
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, Materia materia)
@@ -131,6 +135,7 @@ namespace alkemyChallengeCSharp.Controllers
             return View(materia);
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

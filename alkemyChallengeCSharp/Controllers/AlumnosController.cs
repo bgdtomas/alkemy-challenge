@@ -9,9 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using alkemyChallengeCSharp.Database;
 using alkemyChallengeCSharp.Models;
 using usando_seguridad.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace alkemyChallengeCSharp.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class AlumnosController : Controller
     {
         private readonly AcademiaDbContext _context;
@@ -65,6 +67,7 @@ namespace alkemyChallengeCSharp.Controllers
                 alumno.Id = Guid.NewGuid();
                 alumno.Legajo = alumno.Legajo;
                 alumno.Password = alumno.Legajo.Encriptar();
+                alumno.Username = alumno.Dni;
                 _context.Add(alumno);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -116,7 +119,7 @@ namespace alkemyChallengeCSharp.Controllers
                     alumnonDb.Nombre = alumno.Nombre;
                     alumnonDb.Apellido = alumno.Apellido;
                     alumnonDb.Dni = alumno.Dni;
-                    alumnonDb.Username = alumno.Username;
+                    alumnonDb.Username = alumno.Dni;
                     if (!string.IsNullOrEmpty(alumnoLegajo))
                     {
                         alumnonDb.Legajo = alumno.Legajo;
