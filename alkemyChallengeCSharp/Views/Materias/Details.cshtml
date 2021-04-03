@@ -1,10 +1,9 @@
 ﻿@model alkemyChallengeCSharp.Models.Materia
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Model.Nombre;
 }
 
-<h1>Details</h1>
 <div class="row">
     <div class="col-md-6 offset-md-3">
         <div class="card">
@@ -46,9 +45,22 @@
                         Editar
                     </a>
                 }
-                <a asp-action="Index" class="btn btn-success">
-                    Inscribirse
-                </a>
+                else
+                {
+                    bool estaInscripto = ViewBag.Test;
+                    bool desuscribir = !estaInscripto;
+                    <form method="post" asp-controller="Materias" asp-action="InscripcionMaterias" asp-route-id="@Model.Id" hidden="@estaInscripto">
+                        <button type="submit" class="btn btn-success">
+                            Inscribirse
+                        </button>
+                    </form>
+                    <form method="post" asp-controller="Materias" asp-action="DesuscribirMaterias" asp-route-id="@Model.Id" hidden="@desuscribir">
+                        <button type="submit" class="btn btn-danger">
+                            Desuscribirse
+                        </button>
+                    </form>
+
+                }
                 <a asp-action="Index" class="btn btn-danger">
                     Volver
                 </a>

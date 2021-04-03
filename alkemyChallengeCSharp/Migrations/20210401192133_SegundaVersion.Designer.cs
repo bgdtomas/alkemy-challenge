@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using alkemyChallengeCSharp.Database;
 
 namespace alkemyChallengeCSharp.Migrations
 {
     [DbContext(typeof(AcademiaDbContext))]
-    partial class AcademiaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210401192133_SegundaVersion")]
+    partial class SegundaVersion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,27 +151,6 @@ namespace alkemyChallengeCSharp.Migrations
                     b.ToTable("Profesores");
                 });
 
-            modelBuilder.Entity("alkemyChallengeCSharp.Models.RegistroAlumnosInscriptos", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("AlumnoId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("MateriaId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AlumnoId");
-
-                    b.HasIndex("MateriaId");
-
-                    b.ToTable("RegistroAlumnosInscriptos");
-                });
-
             modelBuilder.Entity("alkemyChallengeCSharp.Models.Materia", b =>
                 {
                     b.HasOne("alkemyChallengeCSharp.Models.Alumno", null)
@@ -183,25 +164,6 @@ namespace alkemyChallengeCSharp.Migrations
                         .IsRequired();
 
                     b.Navigation("Profesor");
-                });
-
-            modelBuilder.Entity("alkemyChallengeCSharp.Models.RegistroAlumnosInscriptos", b =>
-                {
-                    b.HasOne("alkemyChallengeCSharp.Models.Alumno", "Alumno")
-                        .WithMany()
-                        .HasForeignKey("AlumnoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("alkemyChallengeCSharp.Models.Materia", "Materia")
-                        .WithMany()
-                        .HasForeignKey("MateriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Alumno");
-
-                    b.Navigation("Materia");
                 });
 
             modelBuilder.Entity("alkemyChallengeCSharp.Models.Alumno", b =>
