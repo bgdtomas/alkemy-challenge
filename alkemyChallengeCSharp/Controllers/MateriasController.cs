@@ -25,13 +25,13 @@ namespace alkemyChallengeCSharp.Controllers
         public async Task<IActionResult> Index()
         {
             ViewData["EsAlumno"] = false;
-            if(ComprobarAlumno())
+            if (ComprobarAlumno())
             {
                 ViewData["EsAlumno"] = true;
             }
 
             var academiaDbContext = _context.Materias.Include(m => m.Profesor);
-            return View(await academiaDbContext.ToListAsync());
+            return View(await academiaDbContext.OrderBy(x => x.Nombre).ToListAsync());
         }
 
         public async Task<IActionResult> Details(Guid? id)
@@ -43,7 +43,7 @@ namespace alkemyChallengeCSharp.Controllers
                 RegistroAlumnosInscriptos? alumnoRegistrado = getTablaIntermedia(alumnoId, id);
                 if (alumnoRegistrado != null)
                 {
-                        ViewData["Test"] = true;
+                    ViewData["Test"] = true;
                 }
             }
 
@@ -172,8 +172,10 @@ namespace alkemyChallengeCSharp.Controllers
         [HttpPost]
         public IActionResult InscripcionMaterias(Materia Materia)
         {
+
             Guid alumnoLoginId = Guid.Parse(this.User.FindFirstValue(ClaimTypes.NameIdentifier));
-            if (alumnoLoginId != null && Materia.Id != null) { 
+            if ((alumnoLoginId != null && Materia.Id != null) && (Materia.MaxAlumnos >= 1))
+            {
                 var materiaRegistrada = new RegistroAlumnosInscriptos();
                 materiaRegistrada.AlumnoId = alumnoLoginId;
                 materiaRegistrada.MateriaId = Materia.Id;
@@ -181,7 +183,7 @@ namespace alkemyChallengeCSharp.Controllers
                 var materia = _context.Materias.Find(Materia.Id);
                 materia.MaxAlumnos--;
                 _context.RegistroAlumnosInscriptos.Add(materiaRegistrada);
-                
+
                 _context.SaveChanges();
             }
             return RedirectToAction(nameof(Index));
@@ -218,5 +220,15 @@ namespace alkemyChallengeCSharp.Controllers
             }
             return esAlumno;
         }
+        //public bool ComprobarHorario(Materia materia)
+        //{
+        //    bool horario = true;
+        //    var size = _context.Alumnos.Count();
+        //    for (int i = 0; i < size; i++)
+        //    {
+
+        //    }
+        //    return horario;
+        //}
     }
 }

@@ -18,9 +18,8 @@ namespace alkemyChallengeCSharp.Models
         public string Nombre { get; set; }
 
         [Required(ErrorMessage = "Este campo es requerido")]
-        [RegularExpression(@"[1-5]{1}\-[2-6]{1}", ErrorMessage = "El campo debe ser del formato N-N y debe estar comprendido entre 0 y 12")]
         [Display(Name = "Horario")]
-        public string Horario { get; set; }
+        public TimeSpan Horario { get; set; }
 
         [ForeignKey(nameof(Profesor))]
         [Display(Name = "Profesor")]
