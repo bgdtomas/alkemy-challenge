@@ -28,6 +28,9 @@ namespace alkemyChallengeCSharp.Controllers
             return View(await _context.Alumnos.ToListAsync());
         }
 
+
+
+
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)

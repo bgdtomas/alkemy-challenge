@@ -170,9 +170,9 @@ namespace alkemyChallengeCSharp.Controllers
         }
 
         [HttpPost]
-        public IActionResult InscripcionMaterias(Materia Materia)
+        public IActionResult InscripcionMaterias(Materia MateriaId)
         {
-
+            Materia Materia = _context.Materias.Find(MateriaId.Id);
             Guid alumnoLoginId = Guid.Parse(this.User.FindFirstValue(ClaimTypes.NameIdentifier));
             if ((alumnoLoginId != null && Materia.Id != null) && (Materia.MaxAlumnos >= 1))
             {
@@ -180,10 +180,8 @@ namespace alkemyChallengeCSharp.Controllers
                 materiaRegistrada.AlumnoId = alumnoLoginId;
                 materiaRegistrada.MateriaId = Materia.Id;
                 materiaRegistrada.Id = Guid.NewGuid();
-                var materia = _context.Materias.Find(Materia.Id);
-                materia.MaxAlumnos--;
+                Materia.MaxAlumnos--;
                 _context.RegistroAlumnosInscriptos.Add(materiaRegistrada);
-
                 _context.SaveChanges();
             }
             return RedirectToAction(nameof(Index));
@@ -220,15 +218,5 @@ namespace alkemyChallengeCSharp.Controllers
             }
             return esAlumno;
         }
-        //public bool ComprobarHorario(Materia materia)
-        //{
-        //    bool horario = true;
-        //    var size = _context.Alumnos.Count();
-        //    for (int i = 0; i < size; i++)
-        //    {
-
-        //    }
-        //    return horario;
-        //}
     }
 }

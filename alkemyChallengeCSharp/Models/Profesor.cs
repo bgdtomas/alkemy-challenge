@@ -29,7 +29,7 @@ namespace alkemyChallengeCSharp.Models
         public string Dni { get; set; }
 
         [Required(ErrorMessage = "Este campo es requerido")]
-        [Display(Name = "Is Active")]
+        [Display(Name = "Esta activo")]
         public Boolean Activo { get; set; }
 
 
